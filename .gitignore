@@ -1,0 +1,6 @@
+# .gitignore
+
+.bundle/
+vendor/
+
+config/database.yml
