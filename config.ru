@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-use Rack::Static,
-  urls: [''], root: 'public/dist', index: 'index.html'
+require File.expand_path('config/application', __dir__)
 
-run proc {
-  [
-    200,
-    { 'Content-Type' => 'text/html' },
-    File.open('public/dist/index.html', File::RDONLY)
-  ]
-}
+run Application
