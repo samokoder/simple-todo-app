@@ -15,6 +15,7 @@ class API::Root < Grape::API
   end
 
   mount API::Status
+  mount API::Todo
 end
 
 Application = Rack::Builder.new do
