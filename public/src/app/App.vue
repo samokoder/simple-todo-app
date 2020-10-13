@@ -149,9 +149,7 @@ export default {
 
       todoApi.create(data)
         .then((resp) => {
-          console.log(resp);
-
-          // TODO add to list
+          this.todoList.push(resp.data);
         })
         .catch((err) => console.warn('Failed to create item', err))
         .then(() => {
