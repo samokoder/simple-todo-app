@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  host: <%= ENV.fetch("DB_HOST") { 'localhost' } %>
+  username: <%= ENV.fetch("DB_USER") { '' } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { '' } %>
+  database: <%= ENV.fetch("DB_NAME") { '' } %>
+  encoding: utf8
+  pool: 10
+  timeout: 5000
+
+development:
+  <<: *default
+  host: localhost
+  username: guestdb
+  password: guestdb
+  database: todoapp_db
+
+production:
+  <<: *default
