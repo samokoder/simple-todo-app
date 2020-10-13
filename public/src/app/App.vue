@@ -22,6 +22,7 @@
             v-bind:key="todo.id"
             v-bind:todo="todo"
             v-on:edit="updateTodo"
+            v-on:delete="deleteTodo"
           ></todo-item>
 
           <div class="panel-block">
@@ -171,6 +172,19 @@ export default {
         .then(() => {
           this.isEditPending = false;
         })
+    },
+
+    deleteTodo(todo) {
+      this.isEditPending = true;
+
+      todoApi.delete(todo.id)
+        .then(() => {
+          this.todoList = this.todoList.filter(x => x.id !== todo.id);
+        })
+        .catch((err) => console.warn('Failed to delete todo', err))
+        .then(() => {
+          this.isEditPending = false;
+        });
     },
 
     editItem() {

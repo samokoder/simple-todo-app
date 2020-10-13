@@ -49,7 +49,7 @@ export default {
 
     deleteItem() {
       if (confirm('RU sure???')) {
-        console.log('delete');
+        this.$emit('delete', { id: this.todo.id });
       }
     }
   }
