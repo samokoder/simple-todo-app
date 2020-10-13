@@ -200,9 +200,6 @@ export default {
 </script>
 
 <style>
-button[disabled] {
-  cursor: not-allowed;
-}
 .todo-done {
   text-decoration: line-through;
 }
