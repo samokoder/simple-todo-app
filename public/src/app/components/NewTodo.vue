@@ -6,7 +6,7 @@
           type="text"
           class="input is-fullwidth"
           placeholder="Edit TODO..."
-          v-model="todo"
+          v-model="title"
           required
         />
       </div>
@@ -27,13 +27,13 @@ export default {
 
   data() {
     return {
-      todo: ''
+      title: ''
     };
   },
 
   methods: {
     formSubmit() {
-      this.$emit('create', { todo: this.todo });
+      this.$emit('create', { title: this.title });
       this.todo = '';
     }
   }
