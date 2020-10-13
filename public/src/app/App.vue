@@ -164,7 +164,10 @@ export default {
 
       todoApi.update(id, data)
         .then((resp) => {
-          console.log(resp);
+          const idx = this.todoList.findIndex(x => x.id === id);
+          if (!idx) return;
+
+          this.todoList.splice(idx, 1, resp.data);
         })
         .catch((err) => console.warn('Failed to item', err))
         .then(() => {
