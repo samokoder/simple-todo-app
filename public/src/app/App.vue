@@ -135,8 +135,8 @@ export default {
       this.isLoadPending = true;
 
       todoApi.get()
-        .then(({ data }) => {
-          console.log(data);
+        .then((resp) => {
+          this.todoList = resp.data;
         })
         .catch((err) => console.warn('Failed to fetch list', err))
         .then(() => {
