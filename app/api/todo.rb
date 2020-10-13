@@ -32,7 +32,8 @@ class API::Todo < Grape::API
       requires :id, type: Integer
     end
     delete ':id' do
-      { status: :ok }
+      status 204
+      ''
     end
   end
 end
