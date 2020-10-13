@@ -5,7 +5,7 @@ class API::Todo < Grape::API
   namespace :todo do
     desc 'Returns a list of TODO'
     get do
-      []
+      Todo.all
     end
 
     desc 'Creates new TODO'
@@ -13,7 +13,7 @@ class API::Todo < Grape::API
       requires :title, type: String, allow_blank: false
     end
     post do
-      {}
+      item = Todo.create!(declared params)
     end
 
     desc 'Updates existing TODO'
@@ -24,7 +24,11 @@ class API::Todo < Grape::API
       at_least_one_of :title, :done
     end
     put ':id' do
-      {}
+      todo = Todo.find_by params.slice(:id)
+      error!('Not found', 404) unless todo
+
+      todo.update!((declared params).except(:id).compact)
+      todo
     end
 
     desc 'Removes existing TODO'
@@ -32,6 +36,11 @@ class API::Todo < Grape::API
       requires :id, type: Integer
     end
     delete ':id' do
+      todo = Todo.find_by params
+      error!('Not found', 404) unless todo
+
+      todo.destroy!
+
       status 204
       ''
     end
