@@ -4,7 +4,11 @@ require_relative 'environment'
 
 module API; end
 
+# load API routes
 Dir[File.expand_path('../app/api/*.rb', __dir__)].each { |f| require f }
+
+# load app models
+Dir[File.expand_path('../app/models/*.rb', __dir__)].each { |f| require f }
 
 class API::Root < Grape::API
   format :json
