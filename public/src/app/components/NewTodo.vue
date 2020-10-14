@@ -34,7 +34,7 @@ export default {
   methods: {
     formSubmit() {
       this.$emit('create', { title: this.title });
-      this.todo = '';
+      this.title = '';
     }
   }
 };
