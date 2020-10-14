@@ -52,9 +52,15 @@
           ></todo-item>
 
           <div class="panel-block">
+            <section>
+              <p>
+                active: {{ activeItemsQty }}, total: {{ totalItemsQty }}
+              </p>
+              <p class="is-size-7 has-text-grey-dark">
+                <em>Hint</em> double-click on active todo to edit
+              </p>
+            </section>
 
-          <div class="panel-block">
-            active: {{ activeItemsQty }}, total: {{ totalItemsQty }}
           </div>
         </nav>
       </div>
