@@ -175,7 +175,7 @@ export default {
       todoApi.update(id, data)
         .then((resp) => {
           const idx = this.todoList.findIndex(x => x.id === id);
-          if (!idx) return;
+          if (idx < 0) return; // -1 means `not found`
 
           this.todoList.splice(idx, 1, resp.data);
         })
