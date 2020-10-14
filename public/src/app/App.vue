@@ -41,6 +41,7 @@
               <b-loading v-bind:active="true" v-bind:is-full-page="false"></b-loading>
             </p>
           </div>
+
           <todo-item
             class="panel-block"
             v-for="todo in filteredTodoList"
@@ -51,64 +52,6 @@
           ></todo-item>
 
           <div class="panel-block">
-            <div class="control">
-              <b-field grouped>
-                <p class="control is-expanded my-2" v-on:dblclick="editItem">
-                  {{ 'todo.title' }}
-                </p>
-
-                <div class="control buttons mb-0">
-                  <b-checkbox class="mr-0" title="mark done"></b-checkbox>
-                  <button
-                    class="delete"
-                    disabled
-                    v-on:click="deleteItem"
-                  ></button>
-                </div>
-              </b-field>
-            </div>
-          </div>
-
-          <div class="panel-block">
-            <div class="control">
-              <b-field grouped>
-                <p
-                  class="control is-expanded my-2 todo-done is-italic"
-                  v-on:dblclick="editItem"
-                >
-                  {{ 'done.title' }}
-                </p>
-
-                <div class="control buttons mb-0">
-                  <b-checkbox
-                    class="mr-0"
-                    title="mark done"
-                    v-bind:value="true"
-                  ></b-checkbox>
-                  <button class="delete" v-on:click="deleteItem"></button>
-                </div>
-              </b-field>
-            </div>
-          </div>
-
-          <div class="panel-block">
-            <div class="control">
-              <b-field grouped>
-                <p class="control is-expanded">
-                  <input type="text" class="input" value="new todo" />
-                </p>
-
-                <div class="control buttons mb-0">
-                  <b-checkbox class="mr-0" title="mark done"></b-checkbox>
-                  <button
-                    class="delete"
-                    disabled
-                    v-on:click="deleteItem"
-                  ></button>
-                </div>
-              </b-field>
-            </div>
-          </div>
 
           <div class="panel-block">
             active: {{ activeItemsQty }}, total: {{ totalItemsQty }}
