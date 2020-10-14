@@ -1,6 +1,22 @@
 <template>
   <div>
-    <div class="control">
+    <div class="control" v-if="isEditMode">
+      <b-field grouped>
+        <p class="control is-expanded">
+          <input type="text" class="input" v-model="title" />
+        </p>
+
+        <div class="control buttons mb-0">
+          <b-button
+            type="is-primary"
+            v-on:click="updateTodo"
+          >OK</b-button>
+          <b-button v-on:click="isEditMode = false">Cancel</b-button>
+        </div>
+      </b-field>
+    </div>
+
+    <div class="control" v-else>
       <b-field grouped>
         <p
           class="control is-expanded my-2"
@@ -41,12 +57,24 @@ export default {
     }
   },
 
+  data() {
+    return {
+      title: '',
+      isEditMode: false,
+    };
+  },
   methods: {
     editItem() {
       // prevent editing finished item
       if (this.todo.done) return;
 
-      console.log('edit');
+      this.isEditMode = true;
+      this.title = this.todo.title;
+    },
+
+    updateTodo() {
+      this.$emit('edit', { id: this.todo.id, title: this.title });
+      this.isEditMode = false;
     },
 
     toggleDone(value) {
