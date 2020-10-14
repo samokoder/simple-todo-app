@@ -12,13 +12,21 @@
           ></new-todo>
 
           <div class="panel-tabs">
-            <a href="#" class="is-active">Active</a>
-            <a href="#">All</a>
+            <a
+              href="#"
+              v-bind:class="{ 'is-active': !hideDoneItems }"
+              v-on:click.prevent="hideDoneItems = false"
+            >All</a>
+            <a
+              href="#"
+              v-bind:class="{ 'is-active': hideDoneItems }"
+              v-on:click.prevent="hideDoneItems = true"
+            >Active</a>
           </div>
 
           <todo-item
             class="panel-block"
-            v-for="todo in todoList"
+            v-for="todo in filteredTodoList"
             v-bind:key="todo.id"
             v-bind:todo="todo"
             v-on:edit="updateTodo"
@@ -124,6 +132,26 @@ export default {
 
     activeItemsQty () {
       return this.todoList.filter(x => !x.done).length;
+    },
+
+    filteredTodoList() {
+      let list = this.todoList;
+
+      if (this.hideDoneItems) {
+        list = this.todoList.filter(x => !x.done);
+      }
+
+      return list
+        .slice()
+        .sort((a, b) => {
+          if (a.done && !b.done) return 1;
+          if (!a.done && b.done) return -1;
+
+          if (a.created_at < b.created_at) return 1;
+          if (a.created_at > b.created_at) return -1;
+
+          return 0;
+        });
     },
   },
 
