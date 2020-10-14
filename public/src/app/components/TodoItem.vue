@@ -17,7 +17,11 @@
             v-bind:value="todo.done"
             v-on:input="toggleDone"
           ></b-checkbox>
-          <button class="delete" v-on:click="deleteItem"></button>
+          <button
+            class="delete"
+            title="delete"
+            v-on:click="deleteItem"
+          ></button>
         </div>
       </b-field>
     </div>
@@ -25,6 +29,8 @@
 </template>
 
 <script>
+import Confirm from './Confirm.vue';
+
 export default {
   name: 'TodoItem',
 
@@ -47,10 +53,20 @@ export default {
       this.$emit('edit', { id: this.todo.id, done: value });
     },
 
+    confirmDeleteItem() {
+      this.$emit('delete', { id: this.todo.id });
+    },
+
     deleteItem() {
-      if (confirm('RU sure???')) {
-        this.$emit('delete', { id: this.todo.id });
-      }
+      this.$buefy.modal.open({
+        parent: this,
+        component: Confirm,
+        hasModalCard: true,
+        trapFocus: true,
+        events: {
+          confirm: this.confirmDeleteItem
+        }
+      });
     }
   }
 };
