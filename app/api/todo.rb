@@ -4,8 +4,13 @@ class API::Todo < Grape::API
   desc 'API for modifying TODO list'
   namespace :todo do
     desc 'Returns a list of TODO'
+    params do
+      optional :only_active, type: Boolean, default: false,
+        desc: 'Return only active items'
+    end
     get do
-      Todo.all
+      method = params[:only_active] ? :active : :all
+      Todo.send(method)
     end
 
     desc 'Creates new TODO'
