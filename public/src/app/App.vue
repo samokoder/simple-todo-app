@@ -11,7 +11,10 @@
             v-bind:disabled="isCreatePending"
           ></new-todo>
 
-          <div class="panel-tabs">
+          <div
+            class="panel-tabs"
+            v-if="!isEmptyTodoList"
+          >
             <a
               href="#"
               v-bind:class="{ 'is-active': !hideDoneItems }"
@@ -24,6 +27,20 @@
             >Active</a>
           </div>
 
+          <div
+            class="panel-block"
+            v-if="isEmptyTodoList && !isLoadPending"
+          >
+            <h3 class="is-size-4 has-text-centered control">
+              Your TODO list is empty
+            </h3>
+          </div>
+
+          <div class="panel-block" v-if="isLoadPending">
+            <p class="control py-5">
+              <b-loading v-bind:active="true" v-bind:is-full-page="false"></b-loading>
+            </p>
+          </div>
           <todo-item
             class="panel-block"
             v-for="todo in filteredTodoList"
@@ -132,6 +149,10 @@ export default {
 
     activeItemsQty () {
       return this.todoList.filter(x => !x.done).length;
+    },
+
+    isEmptyTodoList() {
+      return this.todoList.length <= 0;
     },
 
     filteredTodoList() {
