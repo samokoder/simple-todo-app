@@ -86,7 +86,7 @@
           </div>
 
           <div class="panel-block">
-            total: 8
+            active: {{ activeItemsQty }}, total: {{ totalItemsQty }}
           </div>
         </nav>
       </div>
@@ -124,6 +124,16 @@ export default {
         }
       ],
     };
+  },
+
+  computed: {
+    totalItemsQty() {
+      return this.todoList.length;
+    },
+
+    activeItemsQty () {
+      return this.todoList.filter(x => !x.done).length;
+    },
   },
 
   mounted() {
