@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="formSubmit">
+  <form class="new-todo-form" v-on:submit.prevent="formSubmit">
     <div class="control field has-addons">
       <div class="control is-expanded">
         <input
@@ -13,6 +13,10 @@
       <div class="control">
         <button class="button is-primary">Add</button>
       </div>
+      <b-loading
+        v-bind:active="disabled"
+        v-bind:is-full-page="false"
+      ></b-loading>
     </div>
   </form>
 </template>
@@ -22,7 +26,10 @@ export default {
   name: 'NewTodo',
 
   props: {
-    disabled: Boolean
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
@@ -39,3 +46,11 @@ export default {
   }
 };
 </script>
+
+<style>
+.new-todo-form .loading-overlay .loading-icon:after {
+  width: 2em;
+  height: 2em;
+  top: calc(50% - 1em);
+}
+</style>
