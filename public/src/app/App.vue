@@ -111,18 +111,9 @@ export default {
       isLoadPending: false,
       isEditPending: false,
 
-      todoList: [
-        {
-          id: 1,
-          title: 'Finish app',
-          done: false
-        },
-        {
-          id: 2,
-          title: 'Cleanup',
-          done: true
-        }
-      ],
+      hideDoneItems: false,
+
+      todoList: [],
     };
   },
 
