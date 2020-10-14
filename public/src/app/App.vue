@@ -171,7 +171,7 @@ export default {
         .catch((err) => console.warn('Failed to item', err))
         .then(() => {
           this.isEditPending = false;
-        })
+        });
     },
 
     deleteTodo(todo) {
@@ -185,21 +185,7 @@ export default {
         .then(() => {
           this.isEditPending = false;
         });
-    },
-
-    editItem() {
-      console.log('EDIT!!!');
-    },
-
-    deleteItem() {
-      alert('about to delete');
     }
   }
 };
 </script>
-
-<style>
-.todo-done {
-  text-decoration: line-through;
-}
-</style>
