@@ -50,7 +50,6 @@
 
 <script>
 import dayjs from 'dayjs';
-import Confirm from './Confirm.vue';
 
 export default {
   name: 'TodoItem',
@@ -98,14 +97,9 @@ export default {
     },
 
     deleteItem() {
-      this.$buefy.modal.open({
-        parent: this,
-        component: Confirm,
-        hasModalCard: true,
-        trapFocus: true,
-        events: {
-          confirm: this.confirmDeleteItem
-        }
+      this.$buefy.dialog.confirm({
+        message: 'Are you sure?',
+        onConfirm: this.confirmDeleteItem
       });
     }
   }
