@@ -49,8 +49,8 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 import Confirm from './Confirm.vue';
-import dayjs from '../plugins/dayjs';
 
 export default {
   name: 'TodoItem',
