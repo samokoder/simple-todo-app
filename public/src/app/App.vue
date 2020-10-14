@@ -65,6 +65,8 @@
         </nav>
       </div>
     </div>
+
+    <b-loading v-bind:active="isEditPending"></b-loading>
   </section>
 </template>
 
