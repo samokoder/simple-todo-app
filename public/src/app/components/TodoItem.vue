@@ -26,6 +26,10 @@
           {{ todo.title }}
         </p>
 
+        <span class="todo-timestamp is-size-6 is-italic">
+          {{ createdAt }}
+        </span>
+
         <div class="control buttons mb-0">
           <b-checkbox
             class="mr-0"
@@ -46,6 +50,7 @@
 
 <script>
 import Confirm from './Confirm.vue';
+import dayjs from '../plugins/dayjs';
 
 export default {
   name: 'TodoItem',
@@ -63,6 +68,13 @@ export default {
       isEditMode: false,
     };
   },
+
+  computed: {
+    createdAt() {
+      return dayjs(this.todo.created_at).format('D MMM HH:mm');
+    },
+  },
+
   methods: {
     editItem() {
       // prevent editing finished item
@@ -104,5 +116,11 @@ export default {
 .todo-done {
   text-decoration: line-through;
   font-style: italic;
+}
+
+.todo-timestamp {
+  align-self: center;
+  white-space: nowrap;
+  margin: 0 5px;
 }
 </style>
